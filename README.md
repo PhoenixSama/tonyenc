@@ -1,9 +1,7 @@
 ## 介绍
 
-- 一个简洁、高性能、跨平台的 PHP7 PHP8 代码加密扩展，当前版本为 1.0.0
-- 本次仅是在原作者源码基础上增加了对PHP7.4的支持
-- 原作者项目地址：https://github.com/lihancong/tonyenc
-- PHP8版本已迁至gitee：https://gitee.com/lfveeker/tonyenc
+- 一个简洁、高性能、跨平台的 PHP7 代码加密扩展，当前版本为 0.2.2
+- 对 PHP7.3 的支持在 dev 分支，还没测试，感谢 @toxmc
 
 ## 特点
 
@@ -13,7 +11,7 @@
 - 兼容 Apache、Nginx + PHP-fpm、命令行等运行模式
 - 加密算法较简单，这是出于速度考虑，但仍不易解密
 - 若项目的 php 文件很多，建议只加密部分重要代码文件
-- 要求 PHP >= 7.0
+- 要求 PHP >= 7.0，对 PHP7.3 的支持在 dev 分支，还没测试
 
 **加密前记得备份!!!**
 
@@ -39,34 +37,25 @@ const u_char tonyenc_key[] = {
 
 #### 在 Linux、macOS 上编译
 ```
-git clone https://github.com/lfveeker/tonyenc.git
+git clone https://github.com/lihancong/tonyenc.git
 cd tonyenc
 phpize
 ./configure
 make
-make install
 ```
-将编译好的文件 tonyenc.so 加入到配置项 extension=tonyenc.so，重启 PHP 服务
-#### 在 Windows上安装
+将编译好的文件 modules/tonyenc.so 加入到配置项 extension=tonyenc.so，重启 PHP 服务
+
+#### 在 Windows 上编译
+
+已编译了以下模块，可供测试（这里的密钥与源代码中的不同，需要安装有 [VC14 运行库](https://www.microsoft.com/zh-CN/download/details.aspx?id=48145)）:
+```bash
+# php7.0 64位 线程安全版
+php_tonyenc_php70_ts_VC14_x64.dll
+# php7.0 64位 线程非安全版
+php_tonyenc_php70_nts_VC14_x64.dll
 ```
-已编译了以下模块，可供测试（这里的密钥与源代码中的相同，需要安装有 VC15 运行库）:
-# php7.3 64位 非线程安全版
-php_tonyenc-1.0.0-7.3-nts-vc15-x64.dll
-# php7.3 32位 非线程安全版
-php_tonyenc-1.0.0-7.3-nts-vc15-x86.dll
-# php7.3 64位 线程安全版
-php_tonyenc-1.0.0-7.3-ts-vc15-x64.dll
-# php7.3 32位 线程安全版
-php_tonyenc-1.0.0-7.3-ts-vc15-x86.dll
-# php7.4 64位 非线程安全版
-php_tonyenc-1.0.0-7.4-nts-vc15-x64.dll
-# php7.4 32位 非线程安全版
-php_tonyenc-1.0.0-7.4-nts-vc15-x86.dll
-# php7.4 64位 线程安全版
-php_tonyenc-1.0.0-7.4-ts-vc15-x64.dll
-# php7.4 32位 线程安全版
-php_tonyenc-1.0.0-7.4-ts-vc15-x86.dll
-```
+手动编译方法见 issues
+
 
 ## 加密
 
@@ -77,10 +66,7 @@ php tonyenc.php example.php dir/
 这样即可加密 `example.php` 和 `dir` 目录下的所有 php 文件，PHP 在运行它们时会自动解密，够简单吧！
 
 ## 版权
-原作者声明：
-```
+
 允许转载、修改、商用
+
 这是我开发的第一个扩展，如有不足欢迎指正 :)
-```
-## 声明
-本人仅是在原作者的源码基础上稍作修改，使其支持了PHP8版本

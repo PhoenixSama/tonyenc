@@ -4,10 +4,6 @@
  * @author:  Tony
  * @site:    lihancong.cn
  * @github:  github.com/lihancong/tonyenc
- *
- * @Modifier:   DMLF
- * @site:       www.lfveeker.com
- * @gitee:      gitee.com/lfveeker/tonyenc
  */
 
 /* Modify tonyenc_header to disguise your encrypt file */
@@ -15,17 +11,12 @@ const u_char tonyenc_header[] = {
         0x66, 0x88, 0xff, 0x4f,
         0x68, 0x86, 0x00, 0x56,
         0x11, 0x61, 0x16, 0x18,
-		0x77, 0x88, 0x98, 0x16,
-		0xa1, 0x7b, 0x8f, 0x9f,
 };
 
 /* Modify tonyenc_key to set the secret key */
 const u_char tonyenc_key[] = {
         0x9f, 0x49, 0x52, 0x00,
         0x58, 0x9f, 0xff, 0x23,
-        0x8e, 0xfe, 0xea, 0xfa,
-        0xa6, 0x33, 0xf3, 0xc6,
-		0x58, 0x9f, 0xff, 0x23,
         0x8e, 0xfe, 0xea, 0xfa,
         0xa6, 0x33, 0xf3, 0xc6,
 };
@@ -92,10 +83,7 @@ zend_op_array *cgi_compile_file(zend_file_handle *file_handle, int type)
         goto final;
 
     if (file_handle->type == ZEND_HANDLE_FP) fclose(file_handle->handle.fp);
-    #ifdef ZEND_HANDLE_FD
-        if (file_handle->type == ZEND_HANDLE_FD) close(file_handle->handle.fd);
-    #endif
-
+    if (file_handle->type == ZEND_HANDLE_FD) close(file_handle->handle.fd);
 
 #ifdef PHP_WIN32
     file_handle->handle.fp = res;

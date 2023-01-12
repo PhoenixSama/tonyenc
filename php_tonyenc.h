@@ -13,7 +13,6 @@
   | license@php.net so we can mail you a copy immediately.               |
   +----------------------------------------------------------------------+
   | Author: Tony   lihancong.cn   github.com/lihancong/tonyenc           |
-  | Modifier:DMLF   www.lfveeker.com                                     |
   +----------------------------------------------------------------------+
 */
 
@@ -25,7 +24,7 @@
 extern zend_module_entry tonyenc_module_entry;
 #define phpext_tonyenc_ptr &tonyenc_module_entry
 
-#define PHP_TONYENC_VERSION "1.0.0" /* Replace with version number for your extension */
+#define PHP_TONYENC_VERSION "0.2.2" /* Replace with version number for your extension */
 
 #ifdef PHP_WIN32
 #   define PHP_TONYENC_API __declspec(dllexport)
